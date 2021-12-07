@@ -7,6 +7,7 @@ class App extends React.Component {
     email: '',
     pass: '',
     accept: false,
+    message: '',
     errors: {
       username: false,
       email: false,
@@ -79,6 +80,7 @@ class App extends React.Component {
         email: '',
         pass: '',
         accept: false,
+        message: 'Formularz wysłany',
         errors: {
           username: false,
           email: false,
@@ -95,6 +97,14 @@ class App extends React.Component {
           accept: !validation.accept
         }
       })
+    }
+  }
+
+  componentDidUpdate() {
+    if (this.state.message !== '') {
+      setTimeout(() => this.setState({
+        message: ''
+      }), 3000)
     }
   }
 
@@ -120,6 +130,7 @@ class App extends React.Component {
           </label>
           <button>Zapisz się</button>
         </form>
+        {this.state.message && <h3>{this.state.message}</h3>}
       </div>
     );
   }
